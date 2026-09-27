@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // shadcn tarafından üretilen vendor bileşenleri
+    "src/components/ui/**",
   ]),
 ]);
 
