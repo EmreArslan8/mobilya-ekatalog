@@ -1,5 +1,5 @@
-import { CategoryIndex } from "@/components/site/listing/category-index"
+import { redirect } from "next/navigation"
 
 export default function CategoriesPage() {
-  return <CategoryIndex />
+  redirect("/urunler")
 }

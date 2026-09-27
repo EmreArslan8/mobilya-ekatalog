@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Search } from "lucide-react"
 import { SmartImg } from "@/components/common/smart-img"
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { useCatalog } from "@/lib/catalog-context"
 import { searchProducts } from "@/lib/search"
 import { useUI } from "@/lib/store/ui"
@@ -32,22 +32,23 @@ export function SearchDialog() {
   const go = (href: string) => { setOpen(false); setQ(""); router.push(href) }
 
   const row = (p: Product) => (
-    <CommandItem key={p.id} value={p.id} onSelect={() => go(`/urun/${p.id}`)} className="gap-3 rounded-xl p-2">
-      <SmartImg src={p.images[0]} className="size-12 shrink-0 rounded-lg" />
+    <CommandItem key={p.id} value={p.id} onSelect={() => go(`/urun/${p.id}`)} className="gap-4 rounded-md p-2">
+      <SmartImg src={p.images[0]} className="size-14 shrink-0 rounded-sm" />
       <div className="min-w-0 flex-1">
-        <div className="truncate t-small font-semibold">{p.name}</div>
+        <div className="truncate t-body font-medium">{p.name}</div>
         <div className="truncate t-micro text-muted-foreground">
           {p.sku} · {catOf(p.category)?.name}
         </div>
       </div>
-      {cfg.showPrices && p.price != null && <span className="t-small font-bold tabular-nums">{money(p.price, cfg.currency)}</span>}
+      {cfg.showPrices && p.price != null && <span className="t-small font-semibold tabular-nums">{money(p.price, cfg.currency)}</span>}
     </CommandItem>
   )
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} title="Ürün ara" description="Ürün adı, kodu, rengi veya malzemesi">
-      <CommandInput placeholder="Kanepe, kadife, NV-100…" value={q} onValueChange={setQ} />
-      <CommandList className="max-h-[70dvh]">
+    <CommandDialog open={open} onOpenChange={setOpen} title="Ürün ara" description="Ürün adı, kodu, rengi veya malzemesi" className="top-[10%] max-w-[calc(100%-2rem)] rounded-lg! sm:max-w-2xl">
+      <Command shouldFilter={false} className="rounded-lg bg-popover p-2 [&_[cmdk-group-heading]]:t-eyebrow [&_[cmdk-group-heading]]:text-muted-foreground">
+      <CommandInput placeholder="Kanepe, kadife, NV-100…" value={q} onValueChange={setQ} className="h-12 t-body" />
+      <CommandList className="max-h-[65dvh]">
         {q ? (
           <>
             <CommandEmpty>
@@ -60,7 +61,7 @@ export function SearchDialog() {
           <>
             <CommandGroup heading="Kategoriler">
               {data.categories.map((c) => (
-                <CommandItem key={c.slug} value={`cat-${c.slug}`} onSelect={() => go(`/kategori/${c.slug}`)} className="rounded-lg">
+                <CommandItem key={c.slug} value={`cat-${c.slug}`} onSelect={() => go(`/urunler?kategori=${c.slug}`)} className="rounded-md py-2.5 t-body">
                   {c.name}
                 </CommandItem>
               ))}
@@ -69,6 +70,7 @@ export function SearchDialog() {
           </>
         )}
       </CommandList>
+      </Command>
     </CommandDialog>
   )
 }

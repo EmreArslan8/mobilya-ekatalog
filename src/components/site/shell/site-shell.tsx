@@ -1,5 +1,6 @@
 "use client"
 
+import { CartAddedSheet } from "@/components/site/cart/cart-added-sheet"
 import { useCatalog } from "@/lib/catalog-context"
 import { useHydrated } from "@/lib/store/hydrate"
 import { AnnouncementBar } from "./announcement-bar"
@@ -23,6 +24,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <TabBar />
       <FloatingWhatsApp />
       <SearchDialog />
+      <CartAddedSheet />
     </div>
   )
 }

@@ -1,6 +1,7 @@
-import { CategoryListing } from "@/components/site/listing/listing-pages"
+import { redirect } from "next/navigation"
 
+/** Eski/paylaşılmış kategori linkleri tek tarama sayfasına yönlenir. */
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  return <CategoryListing slug={slug} />
+  redirect(`/urunler?kategori=${slug}`)
 }

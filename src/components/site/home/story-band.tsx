@@ -32,8 +32,8 @@ export function StoryBand({ b2b }: Props) {
           ))}
         </dl>
         <div className="mt-8 flex flex-wrap gap-2">
-          <LinkButton size="lg" className="btn-cta" href="/hakkimizda">Hikayemiz</LinkButton>
-          <LinkButton size="lg" variant="outline" className="btn-cta" href="/iletisim">{b2b ? "Bayimiz olun" : "Showroom’a gelin"}</LinkButton>
+          <LinkButton size="cta" href="/hakkimizda">Hikayemiz</LinkButton>
+          <LinkButton variant="outline" size="cta" href="/iletisim">{b2b ? "Bayimiz olun" : "Showroom’a gelin"}</LinkButton>
         </div>
       </div>
     </section>

@@ -44,7 +44,7 @@ export function ListingView({ title, eyebrow, text, cover, items, facetKey }: Pr
 
   return (
     <>
-      {cover ? <PageCover image={cover} eyebrow={eyebrow} title={title} text={text} /> : <PageHeading eyebrow={eyebrow} title={title} text={text} />}
+      {cover ? <PageCover image={cover} eyebrow={eyebrow} title={title} text={text} /> : <PageHeading variant="hero" eyebrow={eyebrow} title={title} text={text} />}
       <div className="sticky top-15 z-30 border-b bg-background/90 backdrop-blur-xl md:top-17">
         <div className="mx-auto max-w-7xl space-y-3 px-5 py-3 md:flex md:items-center md:gap-6 md:space-y-0 md:px-8">
           <div className="min-w-0 md:flex-1"><FilterChips chips={chips} value={facet} onChange={setFacet} /></div>

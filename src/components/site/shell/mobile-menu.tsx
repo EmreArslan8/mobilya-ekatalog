@@ -30,7 +30,7 @@ export function MobileMenu() {
           <p className="t-eyebrow px-2 pt-2 pb-3 text-muted-foreground">Kategoriler</p>
           <div className="grid grid-cols-2 gap-2">
             {data.categories.map((c) => (
-              <Link key={c.slug} href={`/kategori/${c.slug}`} onClick={close} className="group relative aspect-[4/3] overflow-hidden rounded-md">
+              <Link key={c.slug} href={`/urunler?kategori=${c.slug}`} onClick={close} className="group relative aspect-[4/3] overflow-hidden rounded-md">
                 <SmartImg src={c.image} className="absolute inset-0" />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
                 <span className="absolute inset-x-2.5 bottom-2 t-micro font-medium uppercase tracking-[0.12em] text-white">{c.name}</span>
@@ -46,10 +46,10 @@ export function MobileMenu() {
           </nav>
         </div>
         <div className="mt-auto grid gap-2 border-t p-4">
-          <LinkButton className="btn-cta bg-[#1FAF5A] text-white hover:bg-[#1FAF5A]/90" href={waLink(cfg.contact.whatsapp, "Merhaba, bilgi almak istiyorum.")}>
+          <LinkButton size="cta" className="bg-[#1FAF5A] text-white hover:bg-[#1FAF5A]/90" href={waLink(cfg.contact.whatsapp, "Merhaba, bilgi almak istiyorum.")}>
             <WhatsAppIcon /> WhatsApp ile yazın
           </LinkButton>
-          <LinkButton variant="outline" className="btn-cta" href={`tel:${cfg.contact.phone.replace(/\s/g, "")}`}>
+          <LinkButton variant="outline" size="cta" href={`tel:${cfg.contact.phone.replace(/\s/g, "")}`}>
             <Phone /> {cfg.contact.phone}
           </LinkButton>
         </div>

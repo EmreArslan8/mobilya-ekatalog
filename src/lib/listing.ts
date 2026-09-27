@@ -31,3 +31,22 @@ export function applyListing(items: Product[], facet: string, facetKey: "categor
 }
 
 export const visible = (products: Product[]) => products.filter((p) => p.published)
+
+export type QuickFilter = "all" | "stokta" | "indirim" | "yeni"
+
+export const QUICK_FILTERS: { value: QuickFilter; label: string; needsPrice?: boolean }[] = [
+  { value: "all", label: "Tümü" },
+  { value: "yeni", label: "Yeni" },
+  { value: "stokta", label: "Hemen teslim" },
+  { value: "indirim", label: "İndirimde", needsPrice: true },
+]
+
+/** /urunler sayfası: kategori + hızlı filtre + sıralama. */
+export function browse(items: Product[], opts: { category?: string | null; quick: QuickFilter; sort: SortKey }) {
+  let out = opts.category ? items.filter((p) => p.category === opts.category) : items
+  if (opts.quick === "stokta") out = out.filter((p) => p.stock === "stokta")
+  if (opts.quick === "indirim") out = out.filter((p) => p.oldPrice)
+  if (opts.quick === "yeni") out = out.filter((p) => p.tags.includes("yeni"))
+  const s = SORTERS[opts.sort]
+  return s ? [...out].sort(s) : out
+}

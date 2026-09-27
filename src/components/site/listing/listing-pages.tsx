@@ -7,14 +7,6 @@ import type { ProductTag } from "@/lib/types"
 import { ListingView } from "./listing-view"
 
 /** Route → ListingView eşlemeleri. Sayfa dosyaları sadece bunları çağırır. */
-export function CategoryListing({ slug }: { slug: string }) {
-  const { catOf, products } = useCatalog()
-  const c = catOf(slug)
-  if (!c) return <NotFoundView />
-  const items = products.filter((p) => p.category === slug)
-  return <ListingView eyebrow="Kategori" title={c.name} cover={c.image} items={items} facetKey="collection" />
-}
-
 export function CollectionListing({ slug }: { slug: string }) {
   const { collOf, products, isB2B } = useCatalog()
   const c = collOf(slug)

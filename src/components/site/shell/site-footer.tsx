@@ -19,7 +19,7 @@ export function SiteFooter() {
           </div>
           <p className="t-small mt-3 max-w-xs text-muted-foreground">{cfg.tagline}. Kataloğumuzdaki ürünleri WhatsApp üzerinden kolayca sipariş edebilirsiniz.</p>
         </div>
-        <FooterCol title="Kategoriler" links={data.categories.slice(0, 6).map((x) => ({ href: `/kategori/${x.slug}`, label: x.name }))} />
+        <FooterCol title="Kategoriler" links={data.categories.slice(0, 6).map((x) => ({ href: `/urunler?kategori=${x.slug}`, label: x.name }))} />
         <FooterCol title="Kurumsal" links={MAIN_NAV.slice(1)} />
         <div className="t-small space-y-2.5 text-muted-foreground">
           <p className="t-eyebrow mb-3 text-foreground">İletişim</p>
